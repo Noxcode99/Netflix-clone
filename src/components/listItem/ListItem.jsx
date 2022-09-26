@@ -21,10 +21,10 @@ export default function ListItem({index}) {
         <video src={trailer} autoPlay={true} loop />
          <div className="itemInfo">
             <div className="icons">
-              <PlayArrow/>
-              <Add/>
-              <ThumbUpAltOutlined/>
-              <ThumbDownAltOutlined/>
+              <PlayArrow className="icon"/>
+              <Add className="icon"/>
+              <ThumbUpAltOutlined className="icon"/>
+              <ThumbDownAltOutlined className="icon"/>
             </div>
             <div className="itemInfoTop">
               <span>1 hour 14 mins</span>
