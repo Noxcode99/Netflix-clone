@@ -39,7 +39,7 @@ router.post("/login", async (req, res) => {
         {expiresIn: "5d"}
         );
 
-      const {password, ...info} = user._doc;
+      const { password, ...info} = user._doc;
 
       res.status(200).json({...info, accessToken});
     }catch(err){
