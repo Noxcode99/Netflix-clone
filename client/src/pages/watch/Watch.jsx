@@ -1,5 +1,5 @@
 import { ArrowBackOutlined } from "@material-ui/icons";
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import "./watch.scss";
 
 export default function Watch() {
@@ -7,10 +7,12 @@ export default function Watch() {
   const movie = location.movie;
   return (
     <div className="watch">
+      <Link to="/">
       <div className="back">
         <ArrowBackOutlined />
         Home
       </div>
+      </Link>
       <video
         className="video"
         autoPlay

@@ -1,7 +1,28 @@
 import { InfoOutlined, PlayArrow } from "@material-ui/icons"
+import { useEffect, useState } from "react";
 import "./featured.scss"
+import axios from "axios";
 
-export default function Featured({type}) {
+export default function Featured({ type }) {
+    const [content,setContent] = useState({});
+
+    useEffect(()=>{
+      const getRandomContent = async () =>{
+        try{
+            const res = await axios.get(`/movies/random?type=${type}`, {
+                headers:{
+                  token: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzM2E0MDhhMjBhYTc5MDU4NzZjOGJmOSIsImlzQWRtaW4iOnRydWUsImlhdCI6MTY2NTI5MjY2NSwiZXhwIjoxNjY1NzI0NjY1fQ.Kc1ZqeAGoSULVtiwI3m-TE67oTjmzu-Ez0cg5pQ9b_s"
+                },
+              });
+            setContent(res.data[0]);
+        }catch(err){
+            console.log(err);
+        }
+      };
+      getRandomContent();
+    },[type]);
+
+    console.log(content)
   return (
     <div className="featured">
         {type && (
@@ -25,14 +46,15 @@ export default function Featured({type}) {
                 </select>
             </div>
         )}
-        <img src="https://images.pexels.com/photos/6899260/pexels-photo-6899260.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500" 
+        <img src={content.img}
         alt="" 
         />
         <div className="info">
-            <img src="https://occ-0-1432-1433.1.nflxso.net/dnm/api/v6/LmEnxtiAuzezXBjYXPuDgfZ4zZQ/AAAABUZdeG1DrMstq-YKHZ-dA-cx2uQN_YbCYx7RABDk0y7F8ZK6nzgCz4bp5qJVgMizPbVpIvXrd4xMBQAuNe0xmuW2WjoeGMDn1cFO.webp?r=df1" 
+            <img src={content.imgTitle}
             alt="" 
             />
-            <span className="desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+            <span className="desc">
+                {content.desc}
             </span>
             <div className="buttons">
                 <button className="play">
