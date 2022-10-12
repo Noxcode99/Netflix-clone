@@ -1,6 +1,8 @@
 import AuthReducer from "./AuthReducer";
 import { createContext, useReducer } from "react";
 
+// later will delete it
+
 const INITIAL_STATE = {
     user: null,
     isFetching: false,
