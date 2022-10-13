@@ -1,12 +1,12 @@
-import React, { useContext, useState } from 'react'
-import { login } from '../../context/authContext/apiCalls';
-import { AuthContent } from '../../context/authContext/AuthContext';
+import React, { useContext, useState } from "react";
+import { login } from "../../context/authContext/apiCalls";
+import { AuthContext } from "../../context/authContext/AuthContext";
 import  "./login.css";
 
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const {isFetching, dispatch} = useContext(AuthContent);
+  const {isFetching, dispatch} = useContext(AuthContext);
 
   const handleLogin = (e)=>{
     e.preventDefault();
@@ -15,8 +15,8 @@ export default function Login() {
   return (
     <div className='login'>
       <form className="loginForm">
-        <input t
-        ype="text" 
+        <input 
+        type="text" 
         placeholder="email" 
         className="loginInput" 
         onChange={(e) => setEmail(e.target.value)}
